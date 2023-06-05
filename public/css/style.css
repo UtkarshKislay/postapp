@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+}
+.post-container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+}
+.navbar-container{
+    width: 100%;
+    height: 100px;
+    background-color: blue;
+}
+.sticky{
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+
+
+.navbar{
+    width: 80%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+.newpost{
+    justify-content: center;
+}
+.new-post-heading{
+    color: white;
+    text-align: center;
+}
+.create-post-btn{
+    font-size: 2rem;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: white;
+}
+.create-post-btn:hover{
+    cursor: pointer;
+    color: blue;
+    background-color: white;
+    border-radius: 10px;
+}
+.post-data{
+   display: flex;
+   flex-direction: column;
+   padding: 30px;
+   width: 90% ;
+   align-items: center;
+   margin-top: 30px;
+   margin-left: auto;
+   margin-right: auto;
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.title{
+    margin-top: -9px;
+   font-size: 4rem;
+   margin-bottom: 15px;
+   color: skyblue;
+   font-style: italic;
+   text-decoration: underline;
+   text-decoration-thickness: 2px;
+   text-underline-position: under;
+}
+
+.descr{
+    font-size: 1.8rem;
+    font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+    margin-bottom: 6px;
+}
+
+.created-at{
+    font-size: 1.35rem;
+}
+
+
+.new-post-container{
+    margin-top: 70px;
+   
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.post-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.title-input{
+  /* margin-top: 10px; */
+  /* padding: 10px; */
+}
+
+.descr-input{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-input input{
+    width: 300px;
+    height: 40px;
+    font-size: 1.3rem;
+    padding: 5px;
+}
+
+.descr-input textarea{
+    width: 600px;
+    height: 300px;
+    padding: 10px;
+    font-size: 1.3rem;
+    resize: none;
+}
+
+
+
+.post-btn{
+    background:blue;
+    color: white;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 200px;
+    padding: 20px;
+    font-size: 2rem;
+    border-radius: 10px;
+    border: none;
+}
+
+.post-btn:hover{
+    cursor: pointer;
+    color: blue;
+    background: white;
+    font-weight: bold;
+    border: 3px solid blue;
+    
+}
+
+label{
+    font-size: 1.5rem;
+}

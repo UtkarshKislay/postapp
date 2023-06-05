@@ -7,7 +7,7 @@ var moment = require('moment');
 router.get('/',async(req,res)=>{
     try{
         const result=await Post.find();
-        console.log(result);
+        // console.log(result);
         res.render('index',{data:result,moment:moment});
     }catch(err){
         console.log(err);
@@ -29,7 +29,7 @@ router.post('/post/create/new',async(req,res)=>{
             title:title,
             description:description
         })
-        res.redirect('index');
+        res.redirect('/');
     }catch(err){
         console.log(err);
     }

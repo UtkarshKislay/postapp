@@ -5,13 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
+<div class="navbar-container sticky ">
+  <div class="navbar ">
+    <!-- <form > -->
+      <button class="create-post-btn" id="create-post">CreatePost</button>
+    <!-- </form> -->
+  </div>
+</div>
+  
+
+  <div class="post-container">
     <% for(let i=0;i<data.length;i++){ %>
-      <h3>Title:<%=data[i].title %> </h3>
-      <p>Description:<%=data[i].description %> </p>
-      <p>Date:<%=moment(data[i].createdAt).format('MMMM Do YYYY, h:mm:ss a') %></p>
-     
+      <div class="post-data">
+        <h3 class="title"><%=data[i].title %> </h3>
+        <p class="descr"><%=data[i].description %> </p>
+        <p class="created-at"><%=moment(data[i].createdAt).format('MMMM Do YYYY, h:mm:ss a') %></p>
+    </div>
     <% } %>
+  </div>
+   
+  <script>
+   const el=document.querySelector("#create-post");
+   el.addEventListener('click',(e)=>{
+    window.location.href = '/post/create/new';
+   });
+  </script>
+
 </body>
 </html>
