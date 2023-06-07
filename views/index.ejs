@@ -14,6 +14,11 @@
     <!-- <form > -->
       <button class="create-post-btn" id="create-post">CreatePost</button>
     <!-- </form> -->
+    <% if(isUser){  %>
+     <img class="user-img" src=<%=userImg %> alt="">
+    <%}else {%>
+    <button class="create-post-btn"  id="login"><a class="create-post-btn" href="/auth/google">Login</a></button>
+    <%}%>
   </div>
 </div>
   
@@ -29,10 +34,15 @@
   </div>
    
   <script>
+
    const el=document.querySelector("#create-post");
    el.addEventListener('click',(e)=>{
     window.location.href = '/post/create/new';
    });
+   
+   
+
+   
   </script>
 
 </body>

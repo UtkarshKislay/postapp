@@ -26,7 +26,10 @@ body{
     top: 0;
     z-index: 1;
 }
-
+.user-img{
+    border-radius: 50%;
+    height: 75px;
+}
 
 
 .navbar{
@@ -36,6 +39,7 @@ body{
     margin-left: auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .newpost{
     justify-content: center;
@@ -56,6 +60,10 @@ body{
     color: blue;
     background-color: white;
     border-radius: 10px;
+}
+.create-post-btn a{
+    text-decoration: none;
+    
 }
 .post-data{
    display: flex;
@@ -107,10 +115,6 @@ body{
     /* align-items: center; */
 }
 
-.title-input{
-  /* margin-top: 10px; */
-  /* padding: 10px; */
-}
 
 .descr-input{
     margin-top: 30px;
