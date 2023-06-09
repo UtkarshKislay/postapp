@@ -11,22 +11,33 @@
 
 <div class="navbar-container sticky ">
   <div class="navbar ">
-    <!-- <form > -->
+    <form action="/post/create/new" method="get" >
       <button class="create-post-btn" id="create-post">CreatePost</button>
-    <!-- </form> -->
-    <% if(isUser){  %>
-     <img class="user-img" src=<%=userImg %> alt="">
+    </form>
+    <% if(user){ %>
+     <img class="user-img" src=<%=user.image%> alt="">
     <%}else {%>
-    <button class="create-post-btn"  id="login"><a class="create-post-btn" href="/auth/google">Login</a></button>
+         <button class="create-post-btn"  id="login"><a class="create-post-btn" href="/auth/google">Login</a></button>
     <%}%>
   </div>
 </div>
   
-
+  
   <div class="post-container">
     <% for(let i=0;i<data.length;i++){ %>
+  
       <div class="post-data">
-        <h3 class="title"><%=data[i].title %> </h3>
+        <div class="creator">
+           <div class="creator-info">
+              <% if(data[i].createdBy!='Unknown' && data[i].createdBy!=''){%>
+                <img class="creator-img" src="<%=data[i].creatorImg %>" alt="">
+              <% if(data[i].displayName){ %>
+                <p class="creator-displayName"> <%=data[i].displayName %></p>
+              <% }%>
+              <%}%>
+          </div>
+          <h3 class="title"><%=data[i].title %> </h3>
+        </div>
         <p class="descr"><%=data[i].description %> </p>
         <p class="created-at"><%=moment(data[i].createdAt).format('MMMM Do YYYY, h:mm:ss a') %></p>
     </div>
@@ -35,12 +46,6 @@
    
   <script>
 
-   const el=document.querySelector("#create-post");
-   el.addEventListener('click',(e)=>{
-    window.location.href = '/post/create/new';
-   });
-   
-   
 
    
   </script>
