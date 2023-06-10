@@ -10,16 +10,22 @@
   <body>
     <div class="navbar-container">
       <div class="navbar newpost">
-        <h1 class="new-post-heading">Create A New Post</h1>
+        <h1 class="new-post-heading">Update Post</h1>
       </div>
     </div>
 
     <div class="new-post-container">
-      <form action="/post/create/new" method="post">
+      <form action="/post/update/<%=data.id%>" method="POST">
         <div class="post-content">
           <div class="title-input">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value="<%=data.title  %>"
+              required
+            />
           </div>
           <div class="descr-input">
             <label for="description">Description:</label>
@@ -30,11 +36,25 @@
               cols="30"
               rows="10"
               required
-            ></textarea>
+            >
+<%=data.description  %> </textarea
+            >
           </div>
-          <button class="post-btn" type="submit">POST</button>
+          <button class="post-btn" type="submit">UPDATE</button>
         </div>
       </form>
     </div>
   </body>
 </html>
+
+<!-- <script>
+    const form=document.querySelector('form');
+    form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        const title=form.title.value;
+        const description=form.description.value;
+
+        console.log(data);
+        // const response=await fetch('/post/update/:')
+    })
+</script> -->

@@ -1,54 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-
-<div class="navbar-container sticky ">
-  <div class="navbar ">
-    <form action="/post/create/new" method="get" >
-      <button class="create-post-btn" id="create-post">CreatePost</button>
-    </form>
-    <% if(user){ %>
-     <img class="user-img" src=<%=user.image%> alt="">
-    <%}else {%>
-         <button class="create-post-btn"  id="login"><a class="create-post-btn" href="/auth/google">Login</a></button>
-    <%}%>
-  </div>
-</div>
-  
-  
-  <div class="post-container">
-    <% for(let i=0;i<data.length;i++){ %>
-  
-      <div class="post-data">
-        <div class="creator">
-           <div class="creator-info">
-              <% if(data[i].createdBy!='Unknown' && data[i].createdBy!=''){%>
-                <img class="creator-img" src="<%=data[i].creatorImg %>" alt="">
-              <% if(data[i].displayName){ %>
-                <p class="creator-displayName"> <%=data[i].displayName %></p>
-              <% }%>
-              <%}%>
-          </div>
-          <h3 class="title"><%=data[i].title %> </h3>
-        </div>
-        <p class="descr"><%=data[i].description %> </p>
-        <p class="created-at"><%=moment(data[i].createdAt).format('MMMM Do YYYY, h:mm:ss a') %></p>
-    </div>
-    <% } %>
-  </div>
-   
-  <script>
-
-
-   
-  </script>
-
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link rel="stylesheet" href="/css/style.css">
+      <script src="https://kit.fontawesome.com/ac9f138850.js" crossorigin="anonymous"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>   -->
+   </head>
+   <body>
+      <div class="navbar-container sticky ">
+         <div class="navbar ">
+            <form action="/post/create/new" method="get" >
+               <button class="create-post-btn" id="create-post">CreatePost</button>
+            </form>
+            <% if(userExist){ %>
+            <img class="user-img" src=<%=user.image%> alt="">
+            <%}else {%>
+            <button class="create-post-btn"  id="login"><a class="create-post-btn" href="/auth/google">Login</a></button>
+            <%}%>
+         </div>
+      </div>
+      <div class="post-container">
+         <% for(let i=0;i<data.length;i++){ %>
+         <div class="post-data">
+            <div class="creator">
+               <div class="creator-info">
+                  <% if(data[i].createdBy!='Unknown' && data[i].createdBy!=''){%>
+                  <img class="creator-img" src="<%=data[i].creatorImg %>" alt="">
+                  <% if(data[i].displayName){ %>
+                  <% if(userExist && user.googleId===data[i].createdBy){ %>
+                  <p class="creator-displayName">You</p>
+                  <%} else{%>
+                  <p class="creator-displayName"> <%=data[i].displayName %></p>
+                  <%}%>
+                  <% }%>
+                  <%}%>
+               </div>
+               <div class="title-container">
+                  <h3 class="title"><%=data[i].title %> </h3>
+               </div>
+               <div class="icons">
+                  <% if(userExist){ %>
+                  <%if(data[i].createdBy===user.googleId){%>
+                  <form id="update-post" action="/post/update/<%=data[i]._id%>" method="get">
+                     <button class="form-btn">
+                     <i class="edit-icon fa-icons fa-solid fa-pen-to-square"></i>
+                     </button>
+                  </form>
+                  <button class="form-btn dlt-bnt">
+                  <i class="delete-icon fa-icons fa-sharp fa-solid fa-trash"></i>
+                  </button>
+                  <div class="formDelete hide">
+                     <div class="form-content">
+                        <form id="form-delete" action="/post/delete/<%=data[i]._id%>" method="post">
+                           <div class="form-text">
+                              You really want to delete the post !!
+                           </div>
+                        </form>
+                        <div class="form-btns">
+                           <button type="submit" class="form-dlt-yes btn">YES</button>
+                           <button class="btn form-dlt-no">NO</button>
+                        </div>
+                     </div>
+                  </div>
+                  <% }%>
+                  <%}%>
+               </div>
+            </div>
+            <p class="descr"><%=data[i].description %> </p>
+            <p class="created-at"><%=moment(data[i].createdAt).format('MMMM Do YYYY, h:mm:ss a') %></p>
+         </div>
+         <% } %>
+      </div>
+   </body>
 </html>
+<script>
+   const dltbtns=document.querySelectorAll('.dlt-bnt');
+   for(let i=0;i<dltbtns.length;i++){
+     console.log(dltbtns[i]);
+     dltbtns[i].addEventListener('click',(e)=>{
+       const dltForm = dltbtns[i].nextElementSibling;
+       console.log(dltForm);
+       dltForm.classList.remove('hide');
+       const formDltNo=dltForm.querySelector('.form-dlt-no');
+       formDltNo.addEventListener('click',(e)=>{
+         dltForm.classList.add('hide');
+       });
+   
+       const formDltYes=dltForm.querySelector('.form-dlt-yes');
+       formDltYes.addEventListener('click',(e)=>{
+           const form=dltForm.querySelector('form');
+           form.submit();
+       });
+   
+     })
+   }
+    
+</script>
