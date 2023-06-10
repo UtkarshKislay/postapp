@@ -8,7 +8,7 @@ const auth = require("./routes/auth");
 const web = require("./routes/web");
 const MongoStore = require("connect-mongo")(session);
 const app = express();
-
+const port=3000;
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +34,10 @@ app.use("/*", (req, res) => {
   res.redirect("/");
 });
 
-app.listen(3000, () => {
-  console.log("App is litening at port 3000");
-});
+// app.listen(3000, () => {
+//   console.log("App is litening at port 3000");
+// });
+
+app.listen(process.env.PORT||port,()=>{
+  console.log(`process is running at ${port}`);
+})
