@@ -9,10 +9,13 @@ const web = require("./routes/web");
 const MongoStore = require("connect-mongo")(session);
 const app = express();
 const port=3000;
+const userRoute=require('./routes/user');
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs"); //setting template engine
+
+
 ConnectDb();
 
 console.log(MongoStore);
@@ -29,10 +32,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", auth);
+app.use("/",userRoute)
 app.use("/", web); //seting routes
-app.use("/*", (req, res) => {
-  res.redirect("/");
-});
+// app.use("/*", (req, res) => {
+//   res.redirect("/");
+// });
 
 // app.listen(3000, () => {
 //   console.log("App is litening at port 3000");
@@ -40,4 +44,4 @@ app.use("/*", (req, res) => {
 
 app.listen(process.env.PORT||port,()=>{
   console.log(`process is running at ${port}`);
-})
+});
