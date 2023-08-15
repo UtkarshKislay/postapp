@@ -7,10 +7,20 @@
       <title>Document</title>
       <link rel="stylesheet" href="/css/style.css">
       <link rel="stylesheet" href="/css/profile.css">
+      <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- Include the Moment.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
       <script src="https://kit.fontawesome.com/ac9f138850.js" crossorigin="anonymous"></script>
+     
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>   -->
+
+      <!-- <script src="/socket.io/socket.io.js"></script> -->
+      
    </head>
    <body>
+     
       <div class="navbar-container sticky ">
          <div class="navbar ">
             <form action="/post/create/new" method="get" >
@@ -40,9 +50,7 @@
          <%}%>
    
       <div class="post-container">
-
-         
-         <% for(let i=0;i<data.length;i++){ %>
+         <% for(let i=data.length-1;i>=0;i--){ %>
          <div class="post-data">
             <div class="creator">
                <div class="creator-info">
@@ -88,13 +96,24 @@
                   <%}%>
                </div>
             </div>
-            <p class="descr"><%=data[i].description %> </p>
+            <p class="descr"><%-(data[i].description) %> </p>
+            <!-- <script>
+               console.log(data[i]);
+               function convertHtmlToPlainText(html) {
+                 const tempElement = document.createElement('p');
+                 tempElement.innerHTML = html;
+                 return tempElement.textContent || tempElement.innerText || '';
+               }
+             </script> -->
+           
             <p class="created-at"><%=moment(data[i].createdAt).format('MMMM Do YYYY, h:mm:ss a') %></p>
          </div>
-
-
          <% } %>
       </div>
+    
+       <!-- Include Socket.io -->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <!-- Include your frontend JavaScript -->
    </body>
 </html>
 <script>

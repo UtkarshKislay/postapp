@@ -4,7 +4,8 @@ const Post = require("../models/post");
 var moment = require("moment");
 const { ensureAuth } = require("../midlware/auth");
 const User = require("../models/user");
-
+const http = require('http');
+const socketIo = require('socket.io');
 router.get("/", async (req, res) => {
   try {
     const result = await Post.find({});
@@ -44,7 +45,8 @@ router.post("/post/create/new", ensureAuth, async (req, res) => {
       createdBy: req.user.googleId,
       displayName: req.user.displayName,
     });
-
+    const io = res.locals.io;
+    io.emit("newPost", result);
     res.redirect("/");
   } catch (err) {
     console.log(err);

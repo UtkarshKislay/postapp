@@ -130,7 +130,7 @@ body {
   margin-bottom: 15px;
 }
 .title {
-  font-size: 4rem;
+  font-size: 2.1rem;
   color: skyblue;
   font-style: italic;
   text-decoration: underline;
@@ -144,7 +144,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-family: "Calibri", "Trebuchet MS", sans-serif;
   margin-bottom: 6px;
   overflow-x: hidden;
@@ -152,12 +152,12 @@ body {
 
 .created-at {
   padding-top: 10px;
-  font-size: 1.35rem;
+  font-size: 1.01rem;
+  font-style: italic;
 }
 
 .new-post-container {
   margin-top: 70px;
-
   width: 80%;
   margin-left: auto;
   margin-right: auto;

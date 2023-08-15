@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.tiny.cloud/1/8ekjflkm92kqtpsvk3kipnpefyljxmpkj3ceisptrel255sn/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   </head>
   <body>
     <div class="navbar-container">
@@ -29,7 +30,7 @@
               name="description"
               cols="30"
               rows="10"
-              required
+            
             ></textarea>
           </div>
           <button class="post-btn" type="submit">POST</button>
@@ -38,3 +39,24 @@
     </div>
   </body>
 </html>
+<script>
+ 
+  tinymce.init({
+    selector: '#description', 
+  });
+</script>
+<script>
+  const form = document.querySelector('form');
+const editor = tinymce.get('description'); 
+form.addEventListener('submit', function(event) {
+  if (editor && editor.getContent().trim() === '') {
+    event.preventDefault();
+    alert('Please provide a description.');
+  }else{
+    editor.save();
+    // const formData = new FormData(form);
+    // console.log(formData);
+  }
+});
+</script>
+
