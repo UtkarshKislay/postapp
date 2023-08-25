@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 const socket = io(); // Connect to the server
 socket.on("connect", () => {
   // console.log("Connected to server with", socket.id);
@@ -64,3 +65,4 @@ socket.on("connect", () => {
 socket.on("disconnect", () => {
   // console.log("Disconnected from server");
 });
+}
